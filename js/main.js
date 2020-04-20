@@ -7,6 +7,7 @@
   const reset = document.getElementById('reset');
 
   let startTime;
+  let timeoutId;
 
   function countUp() {
     const d = new Date(Date.now() - startTime);
@@ -17,13 +18,21 @@
 
 
 
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       countUp();
     }, 10);
   }
   start.addEventListener('click', () => {
     startTime = Date.now();
     countUp();
+  });
+  
+  stop.addEventListener('click', () => {
+    clearTimeout(timeoutId);
+  });
+  
+  reset.addEventListener('click', () => {
+    timer.textContent = '00:00.000';
   });
 
 }
